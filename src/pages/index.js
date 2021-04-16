@@ -1,6 +1,5 @@
-import * as React from "react"
+import React from "react"
 import { Link } from "gatsby"
-import { StaticImage } from "gatsby-plugin-image"
 
 import Layout from "../components/layout"
 import SEO from "../components/seo"
@@ -8,21 +7,48 @@ import SEO from "../components/seo"
 const IndexPage = () => (
   <Layout>
     <SEO title="Home" />
-    <h1>Hi people</h1>
-    <p>Welcome to your new Gatsby site.</p>
-    <p>Now go build something great.</p>
-    <StaticImage
-      src="../images/gatsby-astronaut.png"
-      width={300}
-      quality={95}
-      formats={["AUTO", "WEBP", "AVIF"]}
-      alt="A Gatsby astronaut"
-      style={{ marginBottom: `1.45rem` }}
-    />
+    <div>
+      <h1>Marketplace</h1>
+    </div>
+    <p>Solace data stream marketplace</p>
     <p>
-      <Link to="/page-2/">Go to page 2</Link> <br />
-      <Link to="/using-typescript/">Go to "Using TypeScript"</Link>
+      Etiam quis viverra lorem, in semper lorem. Sed nisl arcu euismod sit amet
+      nisi euismod sed cursus arcu elementum ipsum arcu vivamus quis venenatis
+      orci lorem ipsum et magna feugiat veroeros aliquam. Lorem ipsum dolor sit
+      amet nullam dolore.
     </p>
+
+    <div class="items-center justify-center">
+      <div class="grid grid-cols-2 md:grid-cols-3 ld:grid-cols-3 gap-x-8 gap-y-12">
+        <button class="transition transform hover:-translate-y-1 hover:shadow-2xl bg-blue-100 p-10 rounded">
+          1
+        </button>
+        <button class="transition transform hover:-translate-y-1 bg-blue-100 p-10 hover:shadow-2xl rounded">
+          2
+        </button>
+        <button class="transition transform hover:-translate-y-1 bg-blue-100 p-10 hover:shadow-2xl rounded">
+          3
+        </button>
+        <button class="transition transform hover:-translate-y-1 bg-blue-100 p-10 hover:shadow-2xl rounded">
+          4
+        </button>
+        <button class="transition transform hover:-translate-y-1 bg-blue-100 p-10 hover:shadow-2xl rounded">
+          5
+        </button>
+        <button class="transition transform hover:-translate-y-1 bg-blue-100 p-10 hover:shadow-2xl rounded">
+          6
+        </button>
+        <button class="transition transform hover:-translate-y-1 bg-blue-100 p-10 hover:shadow-2xl rounded">
+          7
+        </button>
+        <button class="transition transform hover:-translate-y-1 bg-blue-100 p-10 hover:shadow-2xl rounded">
+          8
+        </button>
+        <button class="transition transform hover:-translate-y-1 bg-blue-100 p-10 hover:shadow-2xl rounded">
+          9
+        </button>
+      </div>
+    </div>
   </Layout>
 )
 

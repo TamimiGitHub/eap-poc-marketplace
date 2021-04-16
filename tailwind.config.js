@@ -1,0 +1,12 @@
+module.exports = {
+  purge: ["./src/**/*.{js,jsx,ts,tsx}"],
+  darkMode: "class", // or 'media' or 'class'
+  theme: {
+    extend: {},
+  },
+  variants: {
+    transitionProperty: ["responsive", "motion-safe", "motion-reduce"],
+    extend: {},
+  },
+  plugins: [],
+}

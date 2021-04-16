@@ -6,6 +6,7 @@
   "author": "Kyle Mathews <mathews.kyle@gmail.com>",
   "dependencies": {
     "gatsby": "^3.1.1",
+    "gatsby-plugin-dark-mode": "^1.1.2",
     "gatsby-plugin-gatsby-cloud": "^2.1.0",
     "gatsby-plugin-image": "^1.1.1",
     "gatsby-plugin-manifest": "^3.1.0",
@@ -20,7 +21,11 @@
     "react-helmet": "^6.1.0"
   },
   "devDependencies": {
-    "prettier": "2.2.1"
+    "autoprefixer": "^10.2.5",
+    "gatsby-plugin-postcss": "^4.1.0",
+    "postcss": "^8.2.8",
+    "prettier": "2.2.1",
+    "tailwindcss": "^2.0.4"
   },
   "keywords": [
     "gatsby"
