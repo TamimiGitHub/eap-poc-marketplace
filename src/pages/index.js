@@ -1,55 +1,74 @@
-import React from "react"
-import { Link } from "gatsby"
+import "../css/image.css"
 
+import React, { useState, useEffect } from "react"
+// import { AnimationWrapper } from "react-hover-animation"
 import Layout from "../components/layout"
+import APIProduct from "../components/apiProducts"
+import APIProductsDetails from "../components/apiProductDeets"
 import SEO from "../components/seo"
 
-const IndexPage = () => (
-  <Layout>
-    <SEO title="Home" />
-    <div>
-      <h1>Marketplace</h1>
-    </div>
-    <p>Solace data stream marketplace</p>
-    <p>
-      Etiam quis viverra lorem, in semper lorem. Sed nisl arcu euismod sit amet
-      nisi euismod sed cursus arcu elementum ipsum arcu vivamus quis venenatis
-      orci lorem ipsum et magna feugiat veroeros aliquam. Lorem ipsum dolor sit
-      amet nullam dolore.
-    </p>
+const IndexPage = () => {
+  const [appState, setAppState] = useState({
+    loading: false,
+    apiProducts: null,
+    productID: null,
+  })
 
-    <div class="items-center justify-center">
-      <div class="grid grid-cols-2 md:grid-cols-3 ld:grid-cols-3 gap-x-8 gap-y-12">
-        <button class="transition transform hover:-translate-y-1 hover:shadow-2xl bg-blue-100 p-10 rounded">
-          1
-        </button>
-        <button class="transition transform hover:-translate-y-1 bg-blue-100 p-10 hover:shadow-2xl rounded">
-          2
-        </button>
-        <button class="transition transform hover:-translate-y-1 bg-blue-100 p-10 hover:shadow-2xl rounded">
-          3
-        </button>
-        <button class="transition transform hover:-translate-y-1 bg-blue-100 p-10 hover:shadow-2xl rounded">
-          4
-        </button>
-        <button class="transition transform hover:-translate-y-1 bg-blue-100 p-10 hover:shadow-2xl rounded">
-          5
-        </button>
-        <button class="transition transform hover:-translate-y-1 bg-blue-100 p-10 hover:shadow-2xl rounded">
-          6
-        </button>
-        <button class="transition transform hover:-translate-y-1 bg-blue-100 p-10 hover:shadow-2xl rounded">
-          7
-        </button>
-        <button class="transition transform hover:-translate-y-1 bg-blue-100 p-10 hover:shadow-2xl rounded">
-          8
-        </button>
-        <button class="transition transform hover:-translate-y-1 bg-blue-100 p-10 hover:shadow-2xl rounded">
-          9
-        </button>
-      </div>
-    </div>
-  </Layout>
-)
+  const [productID, setProductID] = useState(null)
+
+  const API_PRODUCT_URL =
+    "https://console.solace.cloud/api/v0/eventPortal/apiProducts"
+
+  const solaceCloudHeaders = {
+    method: "GET",
+    headers: {
+      Accept: "application/json",
+      mode: "no-cors",
+      Authorization: `Bearer ${process.env.GATSBY_SOLACE_CLOUD_TOKEN}`,
+      "Access-Control-Allow-Origin": "*",
+    },
+  }
+
+  useEffect(() => {
+    setAppState({ loading: true })
+    fetch(API_PRODUCT_URL, solaceCloudHeaders)
+      .then(res => res.json())
+      .then(products => {
+        setAppState({ loading: false, apiProducts: products })
+      })
+  }, [setAppState])
+
+  return (
+    <Layout>
+      <SEO title="Home" />
+      <section className="text-gray-600 body-font">
+        <div className="container mx-auto flex flex-wrap">
+          <div className="flex w-full mb-20 flex-wrap">
+            {/* <AnimationWrapper className="animate-bounce"> */}
+            <h1>Marketplace</h1>
+            {/* </AnimationWrapper> */}
+          </div>
+          <div className="flex flex-wrap w-1/2">
+            <div className="App">
+              <div className="container">
+                <h1>Public API Products</h1>
+              </div>
+              <div className="repo-container">
+                <APIProduct
+                  products={appState.apiProducts}
+                  isLoading={appState.loading}
+                  setProductID={setProductID}
+                />
+              </div>
+              <div className="repo-container">
+                <APIProductsDetails productID={productID} />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </Layout>
+  )
+}
 
 export default IndexPage
